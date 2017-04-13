@@ -1,0 +1,55 @@
+<!doctype html>
+<!-- htmlmin:ignore -->
+<!--
+
+ Hi! The sourcecode is available on GitHub. https://github.com/nzblnk/nzblnk.github.io
+
+-->
+<!-- htmlmin:ignore -->
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>NZBLNK&trade; Specification</title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="description" content="@@include('../partials/description.txt')">
+    <link rel="shortcut icon" href="nzblnk-logo.png">
+    <meta property="og:description" content="@@include('../partials/description.txt')">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="en">
+    <meta property="og:title" content="NZBLNK&trade; Specification">
+    <meta property="og:site_name" content="NZBLNK&trade; specification - makes the usenet easier.">
+    <meta property="og:url" content="https://nzblnk.github.io">
+    <meta property="og:image" content="https://nzblnk.github.io/nzblnk-logo.png">
+    <meta property="og:image:secure_url" content="https://nzblnk.github.io/nzblnk-logo.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="300">
+    <meta property="og:image:height" content="300">
+    <link rel="canonical" href="https://nzblnk.github.io/"/>
+    <style>@@include('../.inter/main.css')</style>
+</head>
+<body>
+@@include('../.inter/symbol/sprite.svg')
+<div class="container">
+    <svg class="main-icon"><use xlink:href="#logo-nzblnk-color" x="0" y="0"></use></svg>
+    {{intro}}
+    <h2>NZBLNK generator</h2>
+    <p>Enter your data to generate a NZBLNK™ link. Press a copy button to copy the link into your clipboard. Mandatory fields are marked with a star (*).</p>
+    <input type="text" class="nzbparam" id="tag" placeholder="Title *">
+    <input type="text" class="nzbparam" id="header" placeholder="Header *">
+    <input type="text" class="nzbparam" id="group" placeholder="Group">
+    <input type="text" class="nzbparam" id="pass" placeholder="Password">
+
+    <div class="linklabel">The resulting link:</div>
+    <a id="reslnk" href="#" class="reslnk invalid">Please fill the fields.</a>
+    <div class="buttonblock">
+        <button id="btn-cplnk" data-tpl="{nzblnk}" class="btn">Copy Link</button><button id="btn-cpurl"
+        data-tpl="<a href=&quot;{nzblnk}&quot;>{title}</a>" class="btn">Copy as HTML</button><button id="btn-cpbbc"
+        class="btn" data-tpl="[url=&quot;{nzblnk}&quot;]{title}[/url]">Copy as BBCode</button>
+    </div>
+    {{outro}}
+</div>
+<script src="//cdn.polyfill.io/v2/polyfill.min.js?features=blissfuljs"></script>
+<script type="text/javascript">@@include('../.inter/app.js')</script>
+</body>
+</html>
