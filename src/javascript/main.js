@@ -36,19 +36,16 @@ String.prototype.replacePlaceholder=function(A){return this.replace(/\{(\w+)}/g,
         el.addEventListener('click', function(ev) {
             if ($lnk.classList.contains('invalid')) return
 
-            var range = document.createRange()
-            var node = document.createElement('span')
+            var node = document.createElement('input')
             var $body = $('body')
             node.className = 'hidden'
-            node.textContent = ev.target.getAttribute('data-tpl').replacePlaceholder({
+            node.value = ev.target.getAttribute('data-tpl').replacePlaceholder({
                 'nzblnk': $lnk.textContent,
                 'title': $('#tag').value
             })
             $body.appendChild(node)
-            range.selectNode(node)
-            window.getSelection().addRange(range)
+            node.select()
             document.execCommand('copy')
-            window.getSelection().removeAllRanges()
             $body.removeChild(node)
         })
     })
