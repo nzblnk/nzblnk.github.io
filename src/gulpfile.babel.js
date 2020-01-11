@@ -37,7 +37,10 @@ const compile = (done) => {
 
     let js = gulp
         .src('./javascript/main.js')
-        .pipe(terser())
+        .pipe(terser().on('error', (e) => {
+            console.log(e)
+            js.end()
+        }))
         .pipe(gulp.dest(INTERMEDIATE))
 
 
@@ -68,16 +71,20 @@ exports.default = compile
 const runServer = (done) => {
     browserSync({
         single: true,
-        server: '../'
+        server: '../',
+        files: `./${DESTINATION}/*.html`
     })
     done()
 }
 
 const watch = (done) => {
-    gulp.watch('./sass/**/*.sass', compile)
-    gulp.watch('./svg/*.svg', compile)
-    gulp.watch(['./javascript/*.js', './html/*.html', './partials/*'], compile)
-    gulp.watch(`./${DESTINATION}/*.html`).on('change', browserSync.reload)
+    gulp.watch([
+            './sass/*.scss',
+            './svg/*.svg',
+            './javascript/*.js',
+            './html/*.html',
+            './partials/*'],
+        compile)
     done()
 }
 
