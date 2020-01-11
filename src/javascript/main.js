@@ -85,7 +85,7 @@ let parseXml = (data) => {
     const dp = new DOMParser()
     let dom = window.d = dp.parseFromString(data.xml, 'text/xml')
     let fileList = dom.getElementsByTagName('file')
-    if (!fileList) {
+    if (!fileList.length) {
         alert('Invalid file format.')
         return
     }
