@@ -25,12 +25,45 @@ $break-large: 1200px;
 	box-sizing: border-box;
 }
 
+:root {
+	@media (prefers-color-scheme: dark) {
+		--background: #181A1B;
+		--drop-back: rgba(0, 0, 0, .7);
+		--text-color: white;
+		--divider: #2B2F31;
+		--code-back: #1c1e1f;
+		--code-text: #bababa;
+		--code-border: #373c3e;
+		--btn-color: #eff3f6;
+		--btn-back: #24292e;
+		--anchor: #7171ff;
+	}
+	@media (prefers-color-scheme: light) {
+		--background: #fff;
+		--drop-back: rgba(255, 255, 255, .9);
+		--text-color: black;
+		--divider: #ddd;
+		--code-back: #EEE;
+		--code-text: #333;
+		--code-border: #e5e5e5;
+		--btn-color: #24292e;
+		--btn-back: #cccccc;
+		--anchor: #00F;
+	}
+}
+
+a {
+	color: var(--anchor)
+}
+
 body {
 	padding-bottom: 2em;
 	margin: 0;
-	-webkit-tap-highlight-color: rgba(0,0,0,0);
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 	font-weight: 400;
-	background-color: #fff;
+	background-color: var(--background);
+	color: var(--text-color);
+
 	& > svg {
 		// Ugly, but it works. See: http://stackoverflow.com/a/24820654
 		visibility: hidden;
@@ -49,7 +82,8 @@ body {
 		right: 0;
 		outline: 2px dashed #888;
 		outline-offset: -10px;
-		background-color: rgba(255,255,255,.9);
+		background-color: var(--drop-back);
+		backdrop-filter: blur(4px);
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -91,7 +125,7 @@ body {
 	}
 
 
-	h1,h2,h3 {
+	h1, h2, h3 {
 		overflow: hidden;
 		text-align: center;
 		margin: 1em 0 1em;
@@ -101,7 +135,7 @@ body {
 	}
 
 	h1:before, h1:after, h2:before, h2:after {
-		background-color: #ddd;
+		background-color: var(--divider);
 		content: "";
 		display: inline-block;
 		height: 1px;
@@ -132,7 +166,7 @@ body {
 		font-size: 25pt;
 	}
 
-	p,li,div {
+	p, li, div {
 		font-size: 16px;
 	}
 
@@ -142,13 +176,13 @@ body {
 
 	code, pre {
 		font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
-		color: #333;
+		color: var(--code-text);
 	}
 
-	:not(pre)>code {
+	:not(pre) > code {
 		font-size: 85%;
-		background-color: rgba(0,0,0,.05);
-		padding: .2em 0em;
+		background-color: var(--code-back);
+		padding: .2em 0;
 		border-radius: 4px;
 
 		&:before,
@@ -160,11 +194,12 @@ body {
 
 	pre {
 		padding: 8px 15px;
-		background: #f8f8f8;
+		background: var(--code-back);
 		border-radius: 5px;
-		border: 1px solid #e5e5e5;
+		border: 1px solid var(--code-border);
 		overflow-x: auto;
 	}
+
 	input.nzbparam {
 		display: block;
 		margin: 0 auto 1em;
@@ -172,7 +207,8 @@ body {
 		border: 0;
 		border-bottom: 1px solid gray;
 		font-size: 1.5em;
-		background-color: #f8f8f8;
+		background-color: var(--code-back);
+		color: var(--code-text);
 		@media screen and (min-width: $break-small) {
 			width: 80%;
 		}
@@ -191,7 +227,7 @@ body {
 
 	a.reslnk {
 		display: block;
-		color: black;
+		color: var(--code-text);
 		text-decoration: none;
 		margin: 1em 0;
 		font-size: 1.5em;
@@ -199,7 +235,7 @@ body {
 		overflow: hidden;
 		text-overflow: ellipsis;
 		padding: 4px 8px;
-		background-color: #eee;
+		background-color: var(--code-back);
 		border-radius: 2px;
 	}
 
@@ -208,14 +244,13 @@ body {
 	}
 
 	.btn {
-		color: #24292e;
-		background-color: #eff3f6;
-		background-image: -webkit-linear-gradient(270deg, #fafbfc 0%, #eff3f6 90%);
-		background-image: linear-gradient(-180deg, #fafbfc 0%, #eff3f6 90%);
+		cursor: pointer;
+		color: var(--btn-color);
+		background-color: var(--btn-back);
 		padding: 3px 1em;
 		font-size: 1.5em;
 		line-height: 2em;
-		border: 1px solid rgba(0,0,0,0.2);
+		border: none;
 		border-radius: 3px;
 		margin-right: 5px;
 	}
@@ -241,7 +276,7 @@ body {
 		width: 100%;
 		height: auto;
 	}
-	.msg	{
+	.msg {
 		font-size: 20pt;
 	}
 }
